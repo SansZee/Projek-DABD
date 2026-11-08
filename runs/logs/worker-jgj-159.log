@@ -1,0 +1,4 @@
+[h264_v4l2m2m @ 0x465ebd40] Could not find a valid device
+[h264_v4l2m2m @ 0x465ebd40] can't configure encoder
+[ERROR:0@5.259] global cap_ffmpeg_impl.hpp:3568 open Could not open codec h264_v4l2m2m, error: Unspecified error (-22)
+[ERROR:0@5.259] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter

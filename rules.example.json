@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "note": "Parameter awal, WAJIB dikalibrasi dari video sendiri (proposal bagian 5). Koordinat poligon dinormalisasi 0-1. File ini nanti dipublikasikan ke topic rules.config (compacted) dan dibaca Flink lewat broadcast state.",
+  "rule_version": 1,
+  "defaults": {
+    "cooldown_s": 5,
+    "min_track_lifetime_s": 1.0,
+    "dedup_window_s": 5
+  },
+  "cameras": {
+    "CAM-01": {
+      "frame": { "width": 1280, "height": 720 },
+      "zones": [
+        {
+          "zone_id": "Z-ARUS",
+          "rule": "WRONG_WAY",
+          "polygon": [[0.05, 0.35], [0.95, 0.35], [0.95, 0.95], [0.05, 0.95]],
+          "allowed_vector": [1.0, 0.0],
+          "params": {
+            "max_cos": -0.5,
+            "min_displacement_ratio": 0.05,
+            "min_duration_s": 1.5
+          }
+        },
+        {
+          "zone_id": "Z-07",
+          "rule": "NO_STOP_ZONE",
+          "polygon": [[0.10, 0.55], [0.40, 0.55], [0.40, 0.80], [0.10, 0.80]],
+          "params": {
+            "stop_after_s": 30,
+            "parked_after_s": 120,
+            "exclude_classes": ["bus"],
+            "suspected_queue_if_neighbors_stopped": 2
+          }
+        }
+      ]
+    },
+    "CAM-02": {
+      "frame": { "width": 1280, "height": 720 },
+      "zones": [
+        {
+          "zone_id": "Z-ZC1",
+          "rule": "ZEBRA_STOP",
+          "polygon": [[0.30, 0.60], [0.70, 0.60], [0.70, 0.72], [0.30, 0.72]],
+          "params": { "stop_after_s": 5, "min_conf": 0.4 },
+          "label": "indikasi"
+        }
+      ]
+    }
+  }
+}

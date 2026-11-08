@@ -1,0 +1,55 @@
+{
+  "camera_id": "JGJ-159",
+  "source": "rtsp://localhost:8654/jgj-159",
+  "model": "yolo11n.pt",
+  "stride": 3,
+  "imgsz": 640,
+  "conf": 0.35,
+  "src_fps": 25.0,
+  "source_kind": "live",
+  "realtime": true,
+  "started_at": "2026-11-08T22:22:51+07:00",
+  "ended_at": "2026-11-08T22:23:53+07:00",
+  "elapsed_s": 62.21,
+  "warmup_s": 2.986,
+  "frames_read": 1236,
+  "frames_processed": 411,
+  "frames_skipped": 825,
+  "process_fps": 6.61,
+  "steady_process_fps": 6.91,
+  "read_fps": 19.87,
+  "realtime_factor": null,
+  "latency_ms": {
+    "mean": 17.52,
+    "p50": 15.34,
+    "p95": 27.8,
+    "p99": 69.39,
+    "max": 106.77,
+    "warmup": [
+      2966.33,
+      20.04
+    ]
+  },
+  "detections_total": 477,
+  "detections_per_frame": 1.16,
+  "empty_frames": 151,
+  "detections_per_class": {
+    "car": 311,
+    "motorcycle": 2,
+    "person": 164
+  },
+  "unique_tracks": 44,
+  "tracks_per_class": {
+    "car": 27,
+    "motorcycle": 2,
+    "person": 16
+  },
+  "read_errors": 0,
+  "stage_ms_per_frame": {
+    "grab": 113.67,
+    "retrieve": 1.19,
+    "infer": 17.52,
+    "write": 12.32,
+    "pace": 0.0
+  }
+}

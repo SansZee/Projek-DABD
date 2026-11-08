@@ -1,0 +1,16 @@
+[https @ 0x563d6745a100] Error reading HTTP response: End of file
+[https @ 0x563d67456100] Error reading HTTP response: End of file
+[https @ 0x563d6745a100] Error reading HTTP response: End of file
+[https @ 0x563d67494b40] Error reading HTTP response: End of file
+[https @ 0x7f1690078600] Error reading HTTP response: End of file
+[https @ 0x7f1690089940] Error reading HTTP response: End of file
+[https @ 0x7f1690006880] Error reading HTTP response: End of file
+[https @ 0x7f1690089940] Error reading HTTP response: End of file
+[https @ 0x7f169007fc40] Error reading HTTP response: End of file
+[https @ 0x7f1690006880] Error reading HTTP response: End of file
+[https @ 0x7f169000c100] Error reading HTTP response: End of file
+[vost#0:0/copy @ 0x563d6745cb80] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rtsp @ 0x563d67042900] Error muxing a packet
+[out#0/rtsp @ 0x563d67042900] Task finished with error code: -32 (Broken pipe)
+[out#0/rtsp @ 0x563d67042900] Terminating thread with return code -32 (Broken pipe)

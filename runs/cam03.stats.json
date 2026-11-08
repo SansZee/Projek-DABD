@@ -1,0 +1,53 @@
+{
+  "camera_id": "CAM-03",
+  "source": "rtsp://localhost:8554/cam3",
+  "model": "yolo11n.pt",
+  "stride": 3,
+  "imgsz": 640,
+  "conf": 0.35,
+  "src_fps": 15.0,
+  "source_kind": "live",
+  "realtime": true,
+  "started_at": "2026-11-08T22:02:14+07:00",
+  "ended_at": "2026-11-08T22:02:30+07:00",
+  "elapsed_s": 16.035,
+  "warmup_s": 2.63,
+  "frames_read": 255,
+  "frames_processed": 84,
+  "frames_skipped": 171,
+  "process_fps": 5.24,
+  "steady_process_fps": 6.12,
+  "read_fps": 15.9,
+  "realtime_factor": null,
+  "latency_ms": {
+    "mean": 20.17,
+    "p50": 14.41,
+    "p95": 68.55,
+    "p99": 87.01,
+    "max": 89.99,
+    "warmup": [
+      2578.26,
+      51.42
+    ]
+  },
+  "detections_total": 383,
+  "detections_per_frame": 4.56,
+  "empty_frames": 0,
+  "detections_per_class": {
+    "bus": 84,
+    "person": 299
+  },
+  "unique_tracks": 5,
+  "tracks_per_class": {
+    "bus": 1,
+    "person": 4
+  },
+  "read_errors": 0,
+  "stage_ms_per_frame": {
+    "grab": 141.35,
+    "retrieve": 1.21,
+    "infer": 20.17,
+    "write": 0.62,
+    "pace": 0.0
+  }
+}

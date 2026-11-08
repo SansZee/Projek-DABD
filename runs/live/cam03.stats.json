@@ -1,0 +1,55 @@
+{
+  "camera_id": "CAM-03",
+  "source": "rtsp://localhost:8554/cam3",
+  "model": "yolo11n.pt",
+  "stride": 3,
+  "imgsz": 640,
+  "conf": 0.35,
+  "src_fps": 15.0,
+  "source_kind": "live",
+  "realtime": true,
+  "started_at": "2026-11-08T22:08:19+07:00",
+  "ended_at": "2026-11-08T22:08:44+07:00",
+  "elapsed_s": 25.022,
+  "warmup_s": 2.706,
+  "frames_read": 390,
+  "frames_processed": 129,
+  "frames_skipped": 261,
+  "process_fps": 5.16,
+  "steady_process_fps": 5.69,
+  "read_fps": 15.59,
+  "realtime_factor": null,
+  "latency_ms": {
+    "mean": 22.01,
+    "p50": 23.74,
+    "p95": 27.5,
+    "p99": 55.81,
+    "max": 67.37,
+    "warmup": [
+      2675.19,
+      30.35
+    ]
+  },
+  "detections_total": 289,
+  "detections_per_frame": 2.24,
+  "empty_frames": 7,
+  "detections_per_class": {
+    "bus": 6,
+    "car": 196,
+    "truck": 87
+  },
+  "unique_tracks": 16,
+  "tracks_per_class": {
+    "bus": 3,
+    "car": 12,
+    "truck": 3
+  },
+  "read_errors": 0,
+  "stage_ms_per_frame": {
+    "grab": 142.24,
+    "retrieve": 1.49,
+    "infer": 22.01,
+    "write": 9.88,
+    "pace": 0.0
+  }
+}

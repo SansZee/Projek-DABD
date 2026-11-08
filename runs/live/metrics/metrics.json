@@ -1,0 +1,202 @@
+{
+  "generated_at": "2026-11-08T15:08:45.865312+00:00",
+  "files": [
+    {
+      "file": "runs/live/cam01.jsonl",
+      "messages": 130,
+      "bad_lines": 0,
+      "validation_errors": [],
+      "validation_error_count": 0,
+      "cameras": [
+        "CAM-01"
+      ],
+      "model_versions": [
+        "yolo11n"
+      ],
+      "span_s": 22.22,
+      "message_fps": 5.85,
+      "gap_ms": {
+        "p50": 200.0,
+        "p95": 203.0,
+        "max": 915
+      },
+      "non_monotonic_ts": 0,
+      "detections_total": 298,
+      "detections_per_frame": {
+        "mean": 2.29,
+        "median": 2.0,
+        "empty_frames": 8
+      },
+      "detections_per_class": {
+        "bus": 9,
+        "car": 203,
+        "truck": 86
+      },
+      "unique_tracks": 22,
+      "short_tracks": 3,
+      "short_track_ratio": 0.136
+    },
+    {
+      "file": "runs/live/cam02.jsonl",
+      "messages": 129,
+      "bad_lines": 0,
+      "validation_errors": [],
+      "validation_error_count": 0,
+      "cameras": [
+        "CAM-02"
+      ],
+      "model_versions": [
+        "yolo11n"
+      ],
+      "span_s": 22.16,
+      "message_fps": 5.82,
+      "gap_ms": {
+        "p50": 200.0,
+        "p95": 205.0,
+        "max": 1047
+      },
+      "non_monotonic_ts": 0,
+      "detections_total": 289,
+      "detections_per_frame": {
+        "mean": 2.24,
+        "median": 2,
+        "empty_frames": 6
+      },
+      "detections_per_class": {
+        "bus": 6,
+        "car": 196,
+        "truck": 87
+      },
+      "unique_tracks": 19,
+      "short_tracks": 3,
+      "short_track_ratio": 0.158
+    },
+    {
+      "file": "runs/live/cam03.jsonl",
+      "messages": 129,
+      "bad_lines": 0,
+      "validation_errors": [],
+      "validation_error_count": 0,
+      "cameras": [
+        "CAM-03"
+      ],
+      "model_versions": [
+        "yolo11n"
+      ],
+      "span_s": 22.1,
+      "message_fps": 5.84,
+      "gap_ms": {
+        "p50": 200.0,
+        "p95": 204.0,
+        "max": 960
+      },
+      "non_monotonic_ts": 0,
+      "detections_total": 289,
+      "detections_per_frame": {
+        "mean": 2.24,
+        "median": 2,
+        "empty_frames": 7
+      },
+      "detections_per_class": {
+        "bus": 6,
+        "car": 196,
+        "truck": 87
+      },
+      "unique_tracks": 16,
+      "short_tracks": 1,
+      "short_track_ratio": 0.062
+    }
+  ],
+  "worker_stats": {
+    "cameras": [
+      {
+        "camera_id": "CAM-01",
+        "process_fps": 5.17,
+        "frames_processed": 130,
+        "latency_ms": {
+          "mean": 24.61,
+          "p50": 24.73,
+          "p95": 42.71,
+          "p99": 63.84,
+          "max": 72.61,
+          "warmup": [
+            2675.9,
+            35.72
+          ]
+        }
+      },
+      {
+        "camera_id": "CAM-02",
+        "process_fps": 5.16,
+        "frames_processed": 129,
+        "latency_ms": {
+          "mean": 22.94,
+          "p50": 24.22,
+          "p95": 31.17,
+          "p99": 52.66,
+          "max": 55.17,
+          "warmup": [
+            2627.42,
+            47.56
+          ]
+        }
+      },
+      {
+        "camera_id": "CAM-03",
+        "process_fps": 5.16,
+        "frames_processed": 129,
+        "latency_ms": {
+          "mean": 22.01,
+          "p50": 23.74,
+          "p95": 27.5,
+          "p99": 55.81,
+          "max": 67.37,
+          "warmup": [
+            2675.19,
+            30.35
+          ]
+        }
+      }
+    ],
+    "latency_ms": [
+      {
+        "mean": 24.61,
+        "p50": 24.73,
+        "p95": 42.71,
+        "p99": 63.84,
+        "max": 72.61,
+        "warmup": [
+          2675.9,
+          35.72
+        ]
+      },
+      {
+        "mean": 22.94,
+        "p50": 24.22,
+        "p95": 31.17,
+        "p99": 52.66,
+        "max": 55.17,
+        "warmup": [
+          2627.42,
+          47.56
+        ]
+      },
+      {
+        "mean": 22.01,
+        "p50": 23.74,
+        "p95": 27.5,
+        "p99": 55.81,
+        "max": 67.37,
+        "warmup": [
+          2675.19,
+          30.35
+        ]
+      }
+    ],
+    "process_fps": [
+      5.17,
+      5.16,
+      5.16
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "camera_id": "CAM-01",
+  "source": "/tmp/opencode/clip.mp4",
+  "model": "yolo11n.pt",
+  "stride": 3,
+  "imgsz": 640,
+  "conf": 0.35,
+  "src_fps": 15.0,
+  "source_kind": "file",
+  "realtime": true,
+  "started_at": "2026-11-08T22:01:33+07:00",
+  "ended_at": "2026-11-08T22:02:03+07:00",
+  "elapsed_s": 30.115,
+  "warmup_s": 2.416,
+  "frames_read": 417,
+  "frames_processed": 138,
+  "frames_skipped": 279,
+  "process_fps": 4.58,
+  "steady_process_fps": 4.91,
+  "read_fps": 13.85,
+  "realtime_factor": 0.98,
+  "latency_ms": {
+    "mean": 27.37,
+    "p50": 27.34,
+    "p95": 28.35,
+    "p99": 28.79,
+    "max": 29.58,
+    "warmup": [
+      2390.24,
+      26.0
+    ]
+  },
+  "detections_total": 636,
+  "detections_per_frame": 4.61,
+  "empty_frames": 0,
+  "detections_per_class": {
+    "bus": 138,
+    "person": 498
+  },
+  "unique_tracks": 5,
+  "tracks_per_class": {
+    "bus": 1,
+    "person": 4
+  },
+  "read_errors": 0,
+  "stage_ms_per_frame": {
+    "grab": 1.98,
+    "retrieve": 1.22,
+    "infer": 27.37,
+    "write": 0.67,
+    "pace": 172.38
+  }
+}

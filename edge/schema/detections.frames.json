@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://traffic-violation-mesh/schema/detections.frames.json",
+  "title": "detections.frames",
+  "description": "Satu pesan per frame kamera. Koordinat bbox dinormalisasi 0-1 terhadap lebar/tinggi frame. track_id sementara dalam satu sesi kamera.",
+  "type": "object",
+  "required": ["camera_id", "frame_ts", "frame_id", "detections", "model_version"],
+  "additionalProperties": false,
+  "properties": {
+    "camera_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,32}$",
+      "description": "ID kamera, juga dipakai sebagai key partisi Kafka."
+    },
+    "frame_ts": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Waktu dinding (epoch ms) saat frame diproses, bukan timestamp file video."
+    },
+    "frame_id": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Nomor urut frame yang diproses (monoton per sesi kamera, tidak mundur saat file di-loop)."
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "detections": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "required": ["track_id", "cls", "bbox", "conf"],
+        "additionalProperties": false,
+        "properties": {
+          "track_id": {
+            "type": "integer",
+            "minimum": -1,
+            "description": "-1 bila tracker belum memberi ID."
+          },
+          "cls": {
+            "type": "string",
+            "enum": ["person", "bicycle", "car", "motorcycle", "bus", "truck"]
+          },
+          "bbox": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {"type": "number", "minimum": 0, "maximum": 1},
+            "description": "[x1, y1, x2, y2] ternormalisasi, x1<x2 dan y1<y2."
+          },
+          "conf": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

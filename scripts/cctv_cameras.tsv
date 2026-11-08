@@ -1,0 +1,8 @@
+# Kamera CCTV ATCS Kota Yogyakarta yang dipakai untuk bukti progres.
+# Sumber: https://cctv.jogjakota.go.id/home/getdata (header X-Requested-With: XMLHttpRequest)
+# Kolom: id <TAB> nama <TAB> slug stream Wowza <TAB> aturan yang diuji
+# Semua kamera statis (bukan PTZ) agar poligon zona tetap valid.
+# Dipilih dari uji frame malam 8 Nov 2026: arus terlihat + penanda jalan jelas.
+JGJ-163	Simpang Pingit 1 - Jl. Tentara Pelajar	ATCS_Lampu_Merah_Pingit1	NO_STOP_ZONE
+JGJ-157	Simpang Jogokariyan V. Selatan	ATCS_jogokaryan	ZEBRA_STOP
+JGJ-159	Simpang APPI - Jl. Mentri Supeno	ATCS_Lampu_Merah_JlMentriSupeno	WRONG_WAY

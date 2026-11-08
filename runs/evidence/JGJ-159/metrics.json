@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-11-08T15:25:32.774689+00:00",
+  "files": [
+    {
+      "file": "runs/evidence/JGJ-159/detections.jsonl",
+      "messages": 411,
+      "bad_lines": 0,
+      "validation_errors": [],
+      "validation_error_count": 0,
+      "cameras": [
+        "JGJ-159"
+      ],
+      "model_versions": [
+        "yolo11n"
+      ],
+      "span_s": 56.04,
+      "message_fps": 7.33,
+      "gap_ms": {
+        "p50": 114.0,
+        "p95": 123.0,
+        "max": 6223
+      },
+      "non_monotonic_ts": 0,
+      "detections_total": 477,
+      "detections_per_frame": {
+        "mean": 1.16,
+        "median": 1,
+        "empty_frames": 151
+      },
+      "detections_per_class": {
+        "car": 311,
+        "motorcycle": 2,
+        "person": 164
+      },
+      "unique_tracks": 44,
+      "short_tracks": 13,
+      "short_track_ratio": 0.295
+    }
+  ],
+  "worker_stats": {
+    "cameras": [
+      {
+        "camera_id": "JGJ-159",
+        "process_fps": 6.61,
+        "frames_processed": 411,
+        "latency_ms": {
+          "mean": 17.52,
+          "p50": 15.34,
+          "p95": 27.8,
+          "p99": 69.39,
+          "max": 106.77,
+          "warmup": [
+            2966.33,
+            20.04
+          ]
+        }
+      }
+    ],
+    "latency_ms": [
+      {
+        "mean": 17.52,
+        "p50": 15.34,
+        "p95": 27.8,
+        "p99": 69.39,
+        "max": 106.77,
+        "warmup": [
+          2966.33,
+          20.04
+        ]
+      }
+    ],
+    "process_fps": [
+      6.61
+    ]
+  }
+}

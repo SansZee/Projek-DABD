@@ -1,0 +1,55 @@
+{
+  "camera_id": "CAM-01",
+  "source": "/tmp/opencode/traffic-720p.mp4",
+  "model": "yolo11n.pt",
+  "stride": 3,
+  "imgsz": 640,
+  "conf": 0.35,
+  "src_fps": 15.0,
+  "source_kind": "file",
+  "realtime": true,
+  "started_at": "2026-11-08T22:06:49+07:00",
+  "ended_at": "2026-11-08T22:07:09+07:00",
+  "elapsed_s": 20.178,
+  "warmup_s": 2.16,
+  "frames_read": 273,
+  "frames_processed": 90,
+  "frames_skipped": 183,
+  "process_fps": 4.46,
+  "steady_process_fps": 4.88,
+  "read_fps": 13.53,
+  "realtime_factor": 0.98,
+  "latency_ms": {
+    "mean": 27.6,
+    "p50": 27.64,
+    "p95": 28.68,
+    "p99": 28.9,
+    "max": 28.99,
+    "warmup": [
+      2132.92,
+      27.49
+    ]
+  },
+  "detections_total": 207,
+  "detections_per_frame": 2.3,
+  "empty_frames": 4,
+  "detections_per_class": {
+    "bus": 3,
+    "car": 150,
+    "truck": 54
+  },
+  "unique_tracks": 11,
+  "tracks_per_class": {
+    "bus": 1,
+    "car": 8,
+    "truck": 3
+  },
+  "read_errors": 0,
+  "stage_ms_per_frame": {
+    "grab": 0.98,
+    "retrieve": 1.12,
+    "infer": 27.6,
+    "write": 8.9,
+    "pace": 166.03
+  }
+}

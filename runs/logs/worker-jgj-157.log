@@ -1,4 +1,18 @@
-[h264_v4l2m2m @ 0x20c69140] Could not find a valid device
-[h264_v4l2m2m @ 0x20c69140] can't configure encoder
-[ERROR:0@3.973] global cap_ffmpeg_impl.hpp:3568 open Could not open codec h264_v4l2m2m, error: Unspecified error (-22)
-[ERROR:0@3.973] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+[h264_v4l2m2m @ 0x1f8e8a80] Could not find a valid device
+[h264_v4l2m2m @ 0x1f8e8a80] can't configure encoder
+[ERROR:0@8.507] global cap_ffmpeg_impl.hpp:3568 open Could not open codec h264_v4l2m2m, error: Unspecified error (-22)
+[ERROR:0@8.507] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+[31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+Resolved 2 packages in 1.07s
+Downloading lap (1.7MiB)
+ Downloaded lap
+Prepared 1 package in 588ms
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 1 package in 9ms
+ + lap==0.5.14
+
+[31m[1mrequirements:[0m AutoUpdate success ✅ 1.8s
+WARNING ⚠️ [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+

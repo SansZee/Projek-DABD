@@ -10,7 +10,7 @@
 #   clips/<ID>-<label>-annotated.mp4   kotak + track id, banner atribusi
 #   clips/<ID>-<label>-raw.mp4         kondisi asli tanpa anotasi (stream copy)
 #   clips/<ID>-<label>-preview.gif     8 detik untuk slide
-#   runs/evidence/<ID>/                detections.jsonl, stats.json, metrics.md
+#   runs/evidence/<label>/<ID>/        detections.jsonl, stats.json, metrics.md
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -37,7 +37,7 @@ done
 
 BASE="rtsp://localhost:${PORT}"
 CLIPS="clips"
-EVID="runs/evidence"
+EVID="runs/evidence/${LABEL}"
 START_STAMP="$(date '+%d %b %Y %H:%M WIB')"
 mkdir -p "$CLIPS" "$EVID" runs/logs
 

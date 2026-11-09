@@ -1,0 +1,25 @@
+== 3 kamera, 90s, label 'day', mulai 09 Nov 2026 08:21 WIB
+   MediaMTX siap di 8654
+   JGJ-163 <- https://cctvjss.jogjakota.go.id/atcs/ATCS_Lampu_Merah_Pingit1.stream/playlist.m3u8
+   JGJ-157 <- https://cctvjss.jogjakota.go.id/atcs/ATCS_jogokaryan.stream/playlist.m3u8
+   JGJ-159 <- https://cctvjss.jogjakota.go.id/atcs/ATCS_Lampu_Merah_JlMentriSupeno.stream/playlist.m3u8
+   JGJ-163 siap di rtsp://localhost:8654/jgj-163
+   JGJ-157 siap di rtsp://localhost:8654/jgj-157
+   JGJ-159 siap di rtsp://localhost:8654/jgj-159
+== merekam 90s ...
+== rekaman selesai, menyusun klip
+JGJ-163   7.53 fps  p50  20.2 ms  p95  50.8 ms  det/f 6.54  track 107  err 0  frames 590
+JGJ-157   6.79 fps  p50  21.8 ms  p95  45.1 ms  det/f 7.63  track 132  err 0  frames 561
+JGJ-159   6.32 fps  p50  20.3 ms  p95  46.6 ms  det/f 2.75  track  81  err 0  frames 497
+
+== klip di clips/
+    8.9M clips/JGJ-157-day-annotated.mp4
+    2.0M clips/JGJ-157-day-preview.gif
+    23M clips/JGJ-157-day-raw.mp4
+    7.7M clips/JGJ-159-day-annotated.mp4
+    2.5M clips/JGJ-159-day-preview.gif
+    16M clips/JGJ-159-day-raw.mp4
+    12M clips/JGJ-163-day-annotated.mp4
+    1.3M clips/JGJ-163-day-preview.gif
+    24M clips/JGJ-163-day-raw.mp4
+== bukti di runs/evidence/<ID>/

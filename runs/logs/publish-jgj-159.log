@@ -14,3 +14,23 @@
 [out#0/rtsp @ 0x563d67042900] Error muxing a packet
 [out#0/rtsp @ 0x563d67042900] Task finished with error code: -32 (Broken pipe)
 [out#0/rtsp @ 0x563d67042900] Terminating thread with return code -32 (Broken pipe)
+[https @ 0x556a30746100] Error reading HTTP response: End of file
+[https @ 0x556a30742100] Error reading HTTP response: End of file
+[https @ 0x556a30746100] Error reading HTTP response: End of file
+[https @ 0x7fa630029380] Error reading HTTP response: End of file
+[https @ 0x556a30780b40] Error reading HTTP response: End of file
+[https @ 0x7fa63006b1c0] Error reading HTTP response: End of file
+[https @ 0x7fa630042980] Error reading HTTP response: End of file
+[https @ 0x7fa630008a00] Error reading HTTP response: End of file
+[https @ 0x7fa63006c2c0] Error reading HTTP response: End of file
+[https @ 0x7fa630028700] Error reading HTTP response: End of file
+[https @ 0x7fa630007f80] Error reading HTTP response: End of file
+[https @ 0x7fa630028700] Error reading HTTP response: End of file
+[https @ 0x7fa6300404c0] Error reading HTTP response: End of file
+[https @ 0x7fa63007c000] Error reading HTTP response: End of file
+[https @ 0x7fa630007f80] Error reading HTTP response: End of file
+[vost#0:0/copy @ 0x556a30748b80] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/rtsp @ 0x556a3032e900] Error muxing a packet
+[out#0/rtsp @ 0x556a3032e900] Task finished with error code: -32 (Broken pipe)
+[out#0/rtsp @ 0x556a3032e900] Terminating thread with return code -32 (Broken pipe)

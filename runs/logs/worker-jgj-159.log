@@ -1,4 +1,10 @@
-[h264_v4l2m2m @ 0x465ebd40] Could not find a valid device
-[h264_v4l2m2m @ 0x465ebd40] can't configure encoder
-[ERROR:0@5.259] global cap_ffmpeg_impl.hpp:3568 open Could not open codec h264_v4l2m2m, error: Unspecified error (-22)
-[ERROR:0@5.259] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+[h264_v4l2m2m @ 0x48f00940] Could not find a valid device
+[h264_v4l2m2m @ 0x48f00940] can't configure encoder
+[ERROR:0@8.717] global cap_ffmpeg_impl.hpp:3568 open Could not open codec h264_v4l2m2m, error: Unspecified error (-22)
+[ERROR:0@8.717] global cap_ffmpeg_impl.hpp:3585 open VIDEOIO/FFMPEG: Failed to initialize VideoWriter
+[31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+Checked 1 package in 1.53s
+
+[31m[1mrequirements:[0m AutoUpdate success ✅ 1.6s
+WARNING ⚠️ [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+

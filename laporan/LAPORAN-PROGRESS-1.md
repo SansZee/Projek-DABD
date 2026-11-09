@@ -18,12 +18,17 @@ Sisi *edge* sudah berjalan end-to-end dengan video nyata: tiga kamera CCTV publi
 Yogyakarta ditarik lewat MediaMTX, diproses YOLO11n + ByteTrack, lalu ditulis sebagai
 **satu pesan `detections.frames` per frame** sesuai kontrak proposal bagian 7.1.
 
-Hasil sesi rekaman malam 8 November 2026:
+Hasil dua sesi rekaman pada kamera yang sama:
 
-- **1.236 pesan**, **2.953 deteksi**, **100 track unik**, **0 error validasi skema**.
-- **6,2–7,1 fps** per kamera pada sesi rekaman yang sama, latensi **p50 15–27 ms** (catatan beban di §4.3).
-- **0 read error** dari ketiga stream; tidak ada frame timestamp yang mundur.
-- Bukti video: 3 klip asli + 3 klip beranotasi (60 detik) + GIF pratinjau, tersimpan di `clips/`.
+| Sesi | Waktu | Durasi | Pesan | Deteksi | Track unik | Error skema |
+|---|---|---|---:|---:|---:|---:|
+| Malam | 8 Nov 2026, 22:22–22:28 WIB | 60 dtk | 1.236 | 2.953 | 100 | 0 |
+| Siang | 9 Nov 2026, 08:21–08:23 WIB | 90 dtk | 1.648 | 9.509 | 320 | 0 |
+
+- **6,2–7,5 fps** per kamera, latensi **p50 15–27 ms**, **0 read error**, **0 error skema**.
+- Cahaya siang menaikkan deteksi/frame **1,4–5,2×** dan menurunkan frame kosong
+  (JGJ-159: 36,7% → 8,7%); track yang cuma muncul satu frame juga turun.
+- Bukti video: 6 klip asli + 6 klip beranotasi + GIF pratinjau, tersimpan di `clips/`.
 
 Yang **belum** ada di fase ini: Kafka, Flink, ClickHouse, aturan pelanggaran, dan dashboard.
 Laporan ini fokus pada bukti bahwa pipa deteksi dan kontrak datanya sudah valid.
@@ -38,7 +43,7 @@ Laporan ini fokus pada bukti bahwa pipa deteksi dan kontrak datanya sudah valid.
 | 4 | Ingest CCTV Jogja: daftar 153 kamera, filter 118 statis (35 PTZ dibuang) | `scripts/cctv_cameras.tsv` |
 | 5 | Relay HLS → MediaMTX → RTSP agar worker membaca stream real-time | `scripts/record_cctv.sh` |
 | 6 | Perekam sekali jalan: raw + anotasi + banner atribusi + GIF + metrik | `scripts/record_cctv.sh` |
-| 7 | Rekaman malam 3 kamera + evidence JSONL per kamera | `clips/`, `runs/evidence/` |
+| 7 | Rekaman malam (8 Nov) + siang (9 Nov) pada 3 kamera, evidence JSONL per label | `clips/`, `runs/evidence/` |
 | 8 | Dokumentasi cara pakai, angka terukur, dan catatan etis | `README.md`, `clips/README.md` |
 
 ## 3. Arsitektur yang sudah berjalan
@@ -60,7 +65,7 @@ Daftar kamera diambil dari `GET https://cctv.jogjakota.go.id/home/getdata` denga
 lampu merah statis**, **35 PTZ**. Kamera PTZ tidak dipakai karena berputar sehingga poligon
 zona tidak valid.
 
-### 4.2 Frame asli vs hasil deteksi
+### 4.2 Frame malam: asli vs hasil deteksi
 
 Tiga kamera dipilih setelah membandingkan frame malam dari 10 kandidat: arus terlihat,
 marka jalan jelas, dan kamera statis.
@@ -80,7 +85,7 @@ marka jalan jelas, dan kamera statis.
 Kotak berisi `track_id`, kelas, dan confidence. Semua keluaran berlabel **INDIKASI** dan
 diberi banner atribusi; tidak ada pembacaan plat nomor atau pengenalan wajah.
 
-### 4.3 Metrik
+### 4.3 Metrik malam
 
 ![Metrik](bukti/05-metrik.png)
 
@@ -117,24 +122,60 @@ JGJ-157 terekam pada 22:27:14–22:28:15. Jadi angka fps JGJ-157 tidak sepenuhny
 sebanding karena beban GPU-nya tidak identik. Pengukuran ulang dengan start serentak
 masuk agenda P2.
 
-### 4.4 Artefak dan reproduksi
+### 4.4 Frame siang (pembanding)
+
+Rekaman 9 November 2026 pukul 08:21–08:23 WIB, 90 detik, tiga worker mulai **serentak**
+08:21:55. Frame di bawah diambil dari momen yang sama antara video raw dan anotasi.
+
+**JGJ-163 — Simpang Pingit 1**
+
+![JGJ-163 siang](bukti/06-bukti-day-jgj-163.png)
+
+**JGJ-157 — Simpang Jogokariyan V. Selatan**
+
+![JGJ-157 siang](bukti/07-bukti-day-jgj-157.png)
+
+**JGJ-159 — Simpang APPI**
+
+![JGJ-159 siang](bukti/08-bukti-day-jgj-159.png)
+
+### 4.5 Perbandingan siang vs malam
+
+![Siang vs malam](bukti/09-siang-vs-malam.png)
+
+| Metrik | JGJ-163 | JGJ-157 | JGJ-159 |
+|---|---|---|---|
+| Deteksi/frame malam → siang | 4,55 → **6,54** (+44%) | 1,46 → **7,63** (5,2×) | 1,16 → **2,75** (2,4×) |
+| Frame kosong malam → siang | 2,7% → **0%** | 7,7% → **0%** | 36,7% → **8,7%** |
+| Track ≤ 1 frame malam → siang | 30,6% → **6,5%** | 20,0% → **17,4%** | 29,5% → **16,0%** |
+| fps malam → siang | 6,21 → 7,53 | 7,14 → 6,79 | 6,91 → 6,32 |
+
+Angka siang: 590 / 561 / 497 frame, deteksi/frame 6,54 / 7,63 / 2,75, track 107 / 132 / 81,
+semua **0 error skema**. Deteksi/frame dan persentase tetap sebanding meski durasi berbeda
+(60 vs 90 detik). fps tidak berubah banyak karena GPU sudah jadi batas pada `stride=3`;
+naik-turunnya lebih dipengaruhi kontensi tiga proses, bukan cahaya.
+
+### 4.6 Artefak dan reproduksi
 
 | Artefak | Lokasi |
 |---|---|
-| Klip asli + anotasi + GIF | `clips/JGJ-{163,157,159}-night-{raw,annotated,preview}.*` |
-| Data per frame | `runs/evidence/<ID>/detections.jsonl` |
-| Statistik worker | `runs/evidence/<ID>/stats.json` |
-| Metrik + validasi | `runs/evidence/<ID>/metrics.md`, `metrics.json` |
-| Ringkasan sesi | `runs/evidence/summary/metrics.md` |
+| Klip asli + anotasi + GIF | `clips/JGJ-{163,157,159}-{night,day}-{raw,annotated,preview}.*` |
+| Data per frame | `runs/evidence/<label>/<ID>/detections.jsonl` |
+| Statistik worker | `runs/evidence/<label>/<ID>/stats.json` |
+| Metrik + validasi | `runs/evidence/<label>/<ID>/metrics.md`, `metrics.json` |
+| Ringkasan sesi | `runs/evidence/<label>/summary/metrics.md` |
 
 Reproduksi:
 
 ```bash
 cd ~/Projects/kuliah/dabd/Projek-DABD
 scripts/record_cctv.sh --label night --duration 60   # rekam 3 kamera
-scripts/record_cctv.sh --reuse                       # olah ulang tanpa rekam
-uv run python edge/metrics.py "runs/evidence/*/detections.jsonl" \
-  --stats "runs/evidence/*/stats.json" --out-dir runs/evidence/summary --strict
+scripts/record_cctv.sh --label day --duration 90
+for label in night day; do
+  uv run python edge/metrics.py "runs/evidence/$label/*/detections.jsonl" \
+    --stats "runs/evidence/$label/*/stats.json" \
+    --out-dir "runs/evidence/$label/summary" --strict
+done
 ```
 
 ## 5. Temuan teknis dan kendala
@@ -143,10 +184,11 @@ uv run python edge/metrics.py "runs/evidence/*/detections.jsonl" \
 |---|---|---|
 | HLS dibaca langsung oleh OpenCV: 4,2 detik untuk open, lalu burst 128 fps dari buffer | Bukan real-time, timestamp tidak valid | Wajib lewat MediaMTX/RTSP; sudah diterapkan |
 | OpenCV 5 tidak punya writer `avc1`; jatuh ke `mp4v` ±2,5 MB/s | Klip besar, tidak ramah web | Re-encode H.264 CRF 28 setelah rekam; sudah otomatis |
-| Arus malam 22:20–22:30 sepi | Deteksi/frame JGJ-157 & 159 rendah (1,2–1,5) | Rekam jam sibuk 07:00–09:00 untuk tabel siang vs malam |
+| Arus malam 22:20–22:30 sepi | Deteksi/frame JGJ-157 & 159 malam hanya 1,2–1,5 | Sudah direkam siang 9 Nov: deteksi/frame naik 1,4–5,2×, frame kosong turun |
+| Objek kecil dan jauh (JGJ-159) | Deteksi/frame siang tetap 2,75 | Turunkan `imgsz`/`conf` atau pilih kamera lebih dekat saat uji aturan |
 | 35 kamera PTZ berputar | Zona statis tidak valid | Semua kamera yang dipakai adalah kamera statis |
-| Warmup CUDA 2,3–3,2 detik per proses | Uji < 10 detik tidak mewakili throughput | Semua pengukuran 60 detik; warmup dipisah dari steady-state |
-| Satu worker mulai 4,5 menit setelah yang lain | Perbandingan fps tidak setara | Ukur ulang dengan start serentak + log waktu start |
+| Warmup CUDA 2,3–3,2 detik per proses, sampai 12 detik saat tiga worker start serentak | Uji < 10 detik tidak mewakili throughput | Semua pengukuran 60–90 detik; warmup dipisah dari steady-state |
+| Sesi malam: satu worker mulai 4,5 menit setelah yang lain | Perbandingan fps malam tidak setara | Sesi siang sudah start serentak 08:21:55; sesi malam bisa diulang |
 
 ## 6. Kesesuaian dengan proposal dan etika
 
@@ -159,14 +201,14 @@ uv run python edge/metrics.py "runs/evidence/*/detections.jsonl" \
 
 ### Minggu ini (9–15 November) — sebelum P2
 
-1. **Rekam siang** ketiga kamera pada 07:00–09:00 WIB dengan durasi 90 detik, lalu buat tabel siang vs malam. Target: deteksi/frame naik dan track churn turun.
+1. **Rekam siang** — **selesai 9 November 2026, 08:21–08:23 WIB**: 90 detik × 3 kamera, start serentak, tabel siang vs malam ada di §4.5.
 2. **Gambar zona** di frame 1280×720 untuk tiga kamera: polygon area larangan berhenti, garis stop zebra, dan vektor arah yang diizinkan. Simpan sebagai `rules.config` (JSON) dan tampilkan overlay zona di klip bukti.
 3. **Implementasi rules engine** yang membaca `detections.jsonl` dan mengeluarkan event pelanggaran:
    - `WRONG_WAY` — kosinus vektor gerak track vs `allowed_vector` < `max_cos`.
    - `NO_STOP_ZONE` — track berada di polygon > `stop_after_s`.
    - `ZEBRA_STOP` — kendaraan melewati garis stop saat zona zebra terisi.
 4. **Uji aturan** pada klip malam + siang, lalu sampling manual 20 kejadian untuk mengukur precision. Target awal: ≥ 70% event benar, false positive dicatat.
-5. **Ukur ulang** 3 worker dengan start serentak agar angka fps sebanding.
+5. **Ulangi sesi malam** dengan start serentak bila angka fps malam mau dipakai sebagai pembanding beban (opsional; sesi siang sudah serentak).
 
 ### P2 — 16 November: aturan + jalur Kafka
 
@@ -193,20 +235,22 @@ uv run python edge/metrics.py "runs/evidence/*/detections.jsonl" \
 - [x] Video nyata diproses real-time dari CCTV publik.
 - [x] Angka fps, latensi, deteksi/frame, dan track churn terukur.
 - [x] Bukti visual (raw + anotasi) dan klip untuk presentasi.
+- [x] Pembanding siang vs malam pada kamera yang sama (8 vs 9 Nov).
 
 ## 8. Risiko dan keputusan
 
 | Risiko | Mitigasi |
 |---|---|
-| Malam sepi → data tidak representatif | Rekam jam sibuk; laporkan siang dan malam terpisah |
+| Kepadatan malam dan siang berbeda jauh | Laporkan terpisah; hitung precision per sesi, jangan dicampur |
 | Kalibrasi zona manual dan rawan salah | Simpan koordinat di JSON, overlay zona di klip, review visual per kamera |
 | Beban GPU naik saat 3 kamera + Flink di laptop | Batasi `stride`, turunkan `imgsz`, atau pindah Flink ke mode batch saat demo |
 | Klip berisi identitas | Tidak dipublikasikan, TTL 30 hari, tanpa plat/wajah |
 
-**Keputusan yang dibutuhkan:** (1) jam rekam siang — 07:00–08:00 atau 08:00–09:00;
-(2) apakah zona per kamera digambar manual atau dibantu tool kecil di repo.
+**Keputusan yang dibutuhkan:** apakah zona per kamera digambar manual atau dibantu tool
+kecil di repo (mis. klik 4 titik langsung di frame). Jam rekam siang sudah terjawab:
+dipakai 08:21–08:23 dan hasilnya ada di §4.5.
 
 ---
 
-*Semua angka di laporan ini berasal dari `runs/evidence/` pada 8 November 2026.
+*Semua angka di laporan ini berasal dari `runs/evidence/` pada 8–9 November 2026.
 Klip dan gambar hanya untuk laporan kelas; sumber: CCTV ATCS Kota Yogyakarta.*

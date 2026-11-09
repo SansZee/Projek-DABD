@@ -145,9 +145,13 @@ GPU RTX 4050 Laptop 6 GB, torch 2.15 + CUDA 13.2.
 | 1 kamera, file (30 detik) | 4,91 (target 5) | 27,3 ms | 28,4 ms | 4,6 | 0 |
 | 3 kamera, RTSP paralel (file) | 4,9 / 5,2 / 5,2 | 14–17 ms | 68–82 ms | 4,5 | 0 |
 | 3 kamera CCTV Jogja, malam | 6,2 / 7,1 / 6,9 | 15–27 ms | 27–39 ms | 1,2–4,6 | 0 |
+| 3 kamera CCTV Jogja, siang | 7,5 / 6,8 / 6,3 | 20–22 ms | 45–51 ms | 2,8–7,6 | 0 |
 
-Baris terakhir: 60 detik, 3 kamera nyata (JGJ-163, JGJ-157, JGJ-159), 1280×720 @ 25 fps,
-stride 3. Rekaman + angka lengkap di `clips/README.md` dan `runs/evidence/`.
+Baris malam: 60 detik, 3 kamera nyata (JGJ-163, JGJ-157, JGJ-159), 1280×720 @ 25 fps,
+stride 3. Baris siang: 90 detik, tiga worker mulai serentak 08:21:55, kamera yang sama.
+Cahaya siang menaikkan deteksi/frame **1,4–5,2×** dan menurunkan frame kosong
+(36,7% → 8,7% di JGJ-159). fps hampir sama karena GPU sudah jadi batas pada stride 3.
+Rekaman + angka lengkap di `clips/README.md` dan `runs/evidence/<label>/`.
 
 Catatan jujur untuk laporan:
 

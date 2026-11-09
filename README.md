@@ -26,6 +26,7 @@ tugas-2/
 │   ├── cctv_cameras.tsv              # daftar kamera CCTV yang dipakai
 │   └── spike.sh                      # worker + metrik dalam satu perintah
 ├── clips/                            # klip bukti (video gitignored, README ikut)
+├── laporan/                          # laporan progres + gambar bukti
 ├── rules.example.json                # zona + vektor arah (bahan rules.config Flink)
 └── runs/                             # output (gitignored)
 ```
@@ -182,3 +183,8 @@ Angka mentah: `runs/metrics/metrics.md` dan `runs/metrics/metrics.json`.
 
 Output `runs/*.jsonl` tinggal diganti sink Kafka: satu baris JSON = satu value Avro/JSON,
 key = `camera_id`. Skema Kafka memakai ulang `schema/detections.frames.json`.
+
+## Laporan progres
+
+- [Laporan Progres 1 — edge (9 Nov 2026)](laporan/LAPORAN-PROGRESS-1.md) — bukti
+  frame asli vs anotasi, metrik sesi malam, dan rencana P2–P4.
